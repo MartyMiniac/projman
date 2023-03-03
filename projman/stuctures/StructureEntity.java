@@ -11,9 +11,14 @@ public class StructureEntity {
         this.files = new LinkedList<FileEntity>();
     }
 
+    public ProjectEntity getProject() {
+        return this.project;
+    }
+
     public void addFileEntity(FileEntity fe) {
         this.files.add(fe);
     }
+
     public LinkedList<FileEntity> getFileEntity() {
         return this.files;
     }
