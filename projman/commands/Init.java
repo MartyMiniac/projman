@@ -4,7 +4,7 @@ import projman.Project;
 
 public class Init {
     public static boolean main() {
-        if (!Project.createListFile() || !Project.createProjectFolder() || !Project.createStructureFile()) {
+        if (!Project.createListFile()) {
             System.out.println("Error: Project Already Exists");
             return false;
         }
