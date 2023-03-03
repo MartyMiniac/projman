@@ -1,6 +1,7 @@
 package projman;
 
 import projman.commands.Init;
+import projman.commands.Save;
 import projman.commands.Start;
 import projman.commands.Command;
 
@@ -10,5 +11,7 @@ public class Main {
         System.out.println("Init successful : " + cmd.main());
         cmd = new Start();
         System.out.println("Start successful : " + cmd.main());
+        cmd = new Save();
+        cmd.main();
     }
 }

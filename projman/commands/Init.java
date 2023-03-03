@@ -1,6 +1,6 @@
 package projman.commands;
 
-import projman.Project;
+import projman.controllers.Project;
 
 public class Init extends Command implements ICommand {
     @Override

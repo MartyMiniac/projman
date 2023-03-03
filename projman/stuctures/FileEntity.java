@@ -11,6 +11,12 @@ public class FileEntity {
         this.fileType = fileType;
     }
 
+    public FileEntity(String fileName, String fileType) {
+        this.fileName = fileName;
+        this.fileDescription = "";
+        this.fileType = fileType;
+    }
+
     public String getFileName() {
         return this.fileName;
     }
@@ -19,8 +25,17 @@ public class FileEntity {
         return this.fileDescription;
     }
 
+    public void setFileDescription(String fileDescriptioString) {
+        this.fileDescription = fileDescriptioString;
+    }
+
     public String getFileType() {
         return this.fileType;
     }
 
+    @Override
+    public String toString() {
+        return "FileEntity [fileName=\"" + fileName + "\", fileDescription=\"" + fileDescription + "\", fileType=\"" + fileType
+                + "\"]";
+    }
 }

@@ -1,12 +1,12 @@
 package projman.commands;
 
-import projman.Project;
+import projman.controllers.Project;
 
 public class Start extends Command implements ICommand {
     @Override
     public boolean main() {
-        String projName = new String();
-        String projDes = new String();
+        String projName = this.takeInput()[0];
+        String projDes = this.takeInput()[1];
 
         if (!Project.createProjectFolder() || !Project.createStructureFile(projName, projDes)
                 || !Project.createProjectGitignoreFile()) {
@@ -17,8 +17,11 @@ public class Start extends Command implements ICommand {
         System.out.println("Log: New Project Directory Creation Successfully");
         return true;
     }
-    public void takeInput(String projName, String projDes) {
-        projName="devTest";
-        projDes="sample test description";
+
+    public String[] takeInput() {
+        String rt[] = new String[2];
+        rt[0] = "devTest";
+        rt[1] = "sample test description";
+        return rt;
     }
 }
