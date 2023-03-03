@@ -1,10 +1,10 @@
-package pracman;
+package projman;
 
-import pracman.commands.Init;
+import projman.commands.Init;
 
 public class Main {
     public static void main(String args[]) {
         System.out.println("Hello World");
-        System.out.println("Commpetion successful :"+Init.main());
+        System.out.println("Commpetion successful :" + Init.main());
     }
 }

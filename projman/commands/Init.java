@@ -1,10 +1,10 @@
-package pracman.commands;
+package projman.commands;
 
-import pracman.Project;
+import projman.Project;
 
 public class Init {
     public static boolean main() {
-        if(!Project.createListFile() || !Project.createProjectFolder() || !Project.createStructureFile()) {
+        if (!Project.createListFile() || !Project.createProjectFolder() || !Project.createStructureFile()) {
             System.out.println("Error: Project Already Exists");
             return false;
         }
