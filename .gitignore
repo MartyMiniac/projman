@@ -1,3 +1,4 @@
 *.todo
 projects.xml
 currLoadedProject
+*.class

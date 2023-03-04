@@ -8,7 +8,7 @@ import projman.commands.Command;
 
 public class Main {
     public static void main(String args[]) {
-        commandSelector(args[1]);
+        commandSelector(args[0]);
     }
 
     private static void commandSelector(String s) {
