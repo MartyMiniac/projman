@@ -25,7 +25,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import projman.helpers.FileOperations;
 import projman.stuctures.FileEntity;
 import projman.stuctures.ProjectEntity;
 import projman.stuctures.StructureEntity;
@@ -194,6 +193,33 @@ public class Project {
         HashSet<File> visited = new HashSet<File>();
 
         unVisited.push(new File("./" + se.getProject().getProjectName()));
+
+        while (!unVisited.empty()) {
+            File uvf = unVisited.pop();
+            if (uvf.isDirectory()) {
+                Project.extendList(unVisited, uvf.listFiles(), visited);
+                dirs.add(uvf);
+            } else {
+                System.out.println("LOG: Deleteing " + uvf.toString());
+                uvf.delete();
+            }
+            visited.add(uvf);
+        }
+
+        Collections.reverse(dirs);
+
+        for (File f : dirs) {
+            System.out.println("LOG: Deleteing Dir " + f.toString());
+            f.delete();
+        }
+    }
+
+    public static void deletecurrLoadedProject() {
+        LinkedList<File> dirs = new LinkedList<File>();
+        Stack<File> unVisited = new Stack<File>();
+        HashSet<File> visited = new HashSet<File>();
+
+        unVisited.push(new File(PROJDIR));
 
         while (!unVisited.empty()) {
             File uvf = unVisited.pop();
