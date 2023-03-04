@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -24,6 +25,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import projman.helpers.FileOperations;
 import projman.stuctures.FileEntity;
 import projman.stuctures.ProjectEntity;
 import projman.stuctures.StructureEntity;
@@ -123,6 +125,7 @@ public class Project {
             if (uvf.isDirectory()) {
                 Project.extendList(unVisited, uvf.listFiles(), visited);
             } else {
+                System.out.println("LOG: File Found " + uvf.toString());
                 paths.add(Project.fileToFileEntity(uvf));
             }
             visited.add(uvf);
@@ -185,6 +188,33 @@ public class Project {
         }
     }
 
+    public static void deleteOldProject(StructureEntity se) {
+        LinkedList<File> dirs = new LinkedList<File>();
+        Stack<File> unVisited = new Stack<File>();
+        HashSet<File> visited = new HashSet<File>();
+
+        unVisited.push(new File("./" + se.getProject().getProjectName()));
+
+        while (!unVisited.empty()) {
+            File uvf = unVisited.pop();
+            if (uvf.isDirectory()) {
+                Project.extendList(unVisited, uvf.listFiles(), visited);
+                dirs.add(uvf);
+            } else {
+                System.out.println("LOG: Deleteing " + uvf.toString());
+                uvf.delete();
+            }
+            visited.add(uvf);
+        }
+
+        Collections.reverse(dirs);
+
+        for (File f : dirs) {
+            System.out.println("LOG: Deleteing Dir " + f.toString());
+            f.delete();
+        }
+    }
+
     private static void writeXML(Document doc,
             OutputStream output)
             throws TransformerException {
@@ -210,7 +240,6 @@ public class Project {
 
     private static void extendList(Stack<File> st, File[] fileList, HashSet<File> hs) {
         for (File f : fileList) {
-            // System.out.println(f);
             if (!hs.contains(f)) {
                 st.push(f);
             }

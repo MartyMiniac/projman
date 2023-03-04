@@ -12,6 +12,6 @@ public class Main {
         cmd = new Start();
         System.out.println("Start successful : " + cmd.main());
         cmd = new Save();
-        cmd.main();
+        System.out.println("Save successful : " + cmd.main());
     }
 }
